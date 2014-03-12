@@ -11,8 +11,10 @@ import org.apache.xmlrpc.server.PropertyHandlerMapping;
 import org.apache.xmlrpc.XmlRpcException;
 
 public class OrderServer {
+  
+  private static String catalogServerAddr = "";
 
-  static public void startOrderServer() {
+  public static void startOrderServer() {
 
     try {
       PropertyHandlerMapping phm = new PropertyHandlerMapping();
@@ -25,26 +27,30 @@ public class OrderServer {
     } catch (Exception exception) { System.err.println("OrderServer: " + exception); }
   }
 
-  public boolean changeBookStockCount(int itemNum, int delta) {
-    System.out.println("Request received: ChangeBookStockCount(" + itemNum +
-                       ", " + delta + ")");
+  public boolean buy(int itemNum) {
+    System.out.println("Request received: buy(" + itemNum + ")");
 
     XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
     XmlRpcClient client = null;
     try {
-      config.setServerURL(new URL("http://localhost:8592"));
+      config.setServerURL(new URL(catalogServerAddr + ":8592"));
       client = new XmlRpcClient();
       client.setConfig(config);
     } catch (Exception e) { System.err.println("Problem! "+ e); }
 
     Object[] params = new Object[2];
     params[0] = itemNum;
-    params[1] = delta;
+    params[1] = 1;
 
     try {
       Boolean result = (Boolean) client.execute("catalogServer.changeBookStockCount", params);
       return result;
     } catch (Exception exception) { System.err.println("OrderServer Client: " + exception); }
     return false;
+  }
+  public static void main(String[] args) {
+      catalogServerAddr = "http://" + ((args.length > 0) ? args[0] : "localhost");
+    
+      OrderServer.startOrderServer();
   }
 }
