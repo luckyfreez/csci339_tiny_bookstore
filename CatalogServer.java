@@ -15,7 +15,7 @@ public class CatalogServer {
 	topics = new Hashtable<String, HashSet<Book> >();
 
 	Book book = new Book("Achieving Less Bugs with More Hugs in CSCI 339",  // name
-			     480,                          // stockCount
+			     5000,                          // stockCount
 			     4.99f,                      // cost
 			     "Distributed Systems",      // topic
 			     53477);                   // itemNum
@@ -106,7 +106,7 @@ public class CatalogServer {
 
     public static void main(String[] args) {
 	initBooks();
-	//System.out.println("main is running");
+	System.out.println("main is running");
 	//CatalogServer catalogServer = new CatalogServer();
     
 	CatalogServer.startCatalogServer();

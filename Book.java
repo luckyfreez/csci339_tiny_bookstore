@@ -18,9 +18,9 @@ public class Book {
   public boolean changeStockCount(int delta) {
     synchronized (stockCountLock) {
       if (stockCount >= delta) {
-        System.out.println("old item num = " + stockCount);
+	  
         stockCount -= delta;
-        System.out.println("new item num = " + stockCount);
+
         return true;
       } else {
         return false;

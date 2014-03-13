@@ -75,7 +75,7 @@ public class FrontEndServer {
     }
 
   public boolean buy(int itemNum) {
-    System.out.println("Request received: buy(" + itemNum + ")");
+      System.out.println("Request received: buy(" + itemNum + ")");
 
     XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
     XmlRpcClient client = null;
