@@ -1,9 +1,4 @@
-Testing for searchusing parallel requests
-10 repetitions time: 0.00549602508545 seconds 
-50 repetitions time: 0.00235199928284 seconds 
-100 repetitions time: 0.00342297554016 seconds 
-200 repetitions time: 0.00241708755493 seconds 
-300 repetitions time: 0.00252103805542 seconds 
-500 repetitions time: 0.00410795211792 seconds 
-1000 repetitions time: 0.00369310379028 seconds 
-5000 repetitions time: 0.00440788269043 seconds 
+Testing for buy using parallel requests
+10 repetitions time: 0.372715950012 seconds 
+50 repetitions time: 0.974656820297 seconds 
+100 repetitions time: 1.58238101006 seconds 

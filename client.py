@@ -10,7 +10,7 @@ class Client:
   def buy(self,  item_num=53477):
     server = xmlrpclib.Server(self.front_end_url)
     result = server.frontendServer.buy(item_num)
-    print "Buy" ("Succeeded" if result else "Failed")
+    print "Buy", ("Succeeded" if result else "Failed")
   
   def search(self, topic="Distributed Systems"):
     server = xmlrpclib.Server(self.front_end_url)

@@ -1,0 +1,9 @@
+Testing for search using parallel requests
+10 repetitions time: 0.214519023895 seconds 
+50 repetitions time: 0.379106998444 seconds 
+100 repetitions time: 0.594568967819 seconds 
+200 repetitions time: 0.933655977249 seconds 
+500 repetitions time: 1.81578803062 seconds 
+1000 repetitions time: 3.5488781929 seconds 
+2000 repetitions time: 7.36349701881 seconds 
+5000 repetitions time: 18.863560915 seconds 

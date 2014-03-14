@@ -17,6 +17,7 @@ public class Book {
 
   public boolean changeStockCount(int delta) {
     synchronized (stockCountLock) {
+      System.out.println("There are " + stockCount + " books left for " + name);
       if (stockCount + delta >= 0) {
 	  
         stockCount += delta;

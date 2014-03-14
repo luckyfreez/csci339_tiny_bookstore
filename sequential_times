@@ -1,9 +1,8 @@
-Testing for searchusing sequential requests
-10 repetitions time: 0.142467975616 seconds 
-50 repetitions time: 0.270491123199 seconds 
-100 repetitions time: 0.433353900909 seconds 
-200 repetitions time: 0.748209953308 seconds 
-300 repetitions time: 1.02574300766 seconds 
-500 repetitions time: 1.47388386726 seconds 
-1000 repetitions time: 2.71826004982 seconds 
-5000 repetitions time: 11.9732370377 seconds 
+Testing for buyusing sequential requests
+10 repetitions time: 0.253328084946 seconds 
+50 repetitions time: 0.464893102646 seconds 
+100 repetitions time: 0.704061031342 seconds 
+200 repetitions time: 1.12538385391 seconds 
+300 repetitions time: 1.43167901039 seconds 
+500 repetitions time: 2.23431611061 seconds 
+1000 repetitions time: 4.04225897789 seconds 

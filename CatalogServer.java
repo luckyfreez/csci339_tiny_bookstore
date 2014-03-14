@@ -15,7 +15,7 @@ public class CatalogServer {
     topics = new Hashtable<String, HashSet<Book> >();
 
     Book book = new Book("Achieving Less Bugs with More Hugs in CSCI 339",  // name
-        5000,                          // stockCount
+        995000,                          // stockCount
         4.99f,                      // cost
         "Distributed Systems",      // topic
         53477);                   // itemNum
@@ -81,7 +81,7 @@ public class CatalogServer {
   public boolean addNewBook(String bookName, int stockCount, double cost,
                             String topic, int itemNum) {
     Book book = new Book(bookName, stockCount, (float)cost, topic, itemNum);        
-    if (books.get(book.itemNum) {
+    if (books.contains(book.itemNum)) {
       return false;  // The book has already existed.
     }
     books.put(book.itemNum, book);
