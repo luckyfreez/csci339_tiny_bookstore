@@ -40,7 +40,7 @@ public class OrderServer {
 
     Object[] params = new Object[2];
     params[0] = itemNum;
-    params[1] = 1;
+    params[1] = -1;
 
     try {
       Boolean result = (Boolean) client.execute("catalogServer.changeBookStockCount", params);

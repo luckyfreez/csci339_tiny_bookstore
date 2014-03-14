@@ -17,9 +17,9 @@ public class Book {
 
   public boolean changeStockCount(int delta) {
     synchronized (stockCountLock) {
-      if (stockCount >= delta) {
+      if (stockCount + delta >= 0) {
 	  
-        stockCount -= delta;
+        stockCount += delta;
 
         return true;
       } else {

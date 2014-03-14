@@ -9,58 +9,67 @@ import client
 import sys
 import time
 
-c = client.Client("rath")
+c = client.Client()
 lookup_results = {}
 search_results = {}
 buy_results = {}
-f = open('sequential_times','w')
+threads = []
 
 def main():
     """
-    repeat_test("Search", c.search)
-    repeat_test("Lookup", c.lookup)
-    repeat_test("Buy", c.buy)
+    repeat_seq_test("Search", c.search)
+    repeat_seq_test("Lookup", c.lookup)
+    repeat_seq_test("Buy", c.buy)
     """
-    thread_test()
+    #repeat_thread_test()
+    repeat_seq_test()
+    #c.add_new_book()
+    #c.search()
     raw_input()
 
-def repeat_test(method_name = "search", method = c.search):
-    f.write("Testing for " + method_name + "\n")
+def repeat_seq_test(method_name = "search", method = c.search):
+    f = open('sequential_times','w')
+    f.write("Testing for " + method_name + "using sequential requests\n")
     times = [10,50,100,200,300,500,1000,5000]
     for repeat in times:
         start_time = time.time()
-        sequential_test(repeat, method)
+        repeat_target(method, repeat)
         f.write(str(repeat))
         f.write(" repetitions time: ")
         f.write(str(time.time() - start_time))
         f.write(" seconds \n")
 
+def repeat_thread_test(thread_num=5, repeat=100, method_name="search", method=c.search):
+    f = open('thread_times','w')
+    f.write("Testing for " + method_name + "using parallel requests\n")
+    times = [10,50,100,200,300,500,1000,5000]
+    for repeat in times:
+        threads = {}
+        start_time = time.time()
+        for i in range(0, thread_num):
+            create_thread(method, repeat)
 
-def create_thread(target, repeat):
-    t = threading.Thread(target=repeat_target, kwargs={'target': target, 'repeat': repeat})
+        # wait till all the 
+        while threads:
+          print ("%d threads still running" % len(threads)),
+          for t in threads:
+            if not t.is_alive():
+              threads.remove(t)
+
+        f.write(str(repeat))
+        f.write(" repetitions time: ")
+        f.write(str(time.time() - start_time))
+        f.write(" seconds \n")
+
+def create_thread(method, repeat):
+    t = threading.Thread(target=repeat_target, kwargs={'method': method, 'repeat': repeat})
     t.daemon = True
+    threads.append(t)
     t.start()
 
-def repeat_target(target, repeat):
+def repeat_target(method=c.search, repeat=500):
     for i in range(0, repeat):
-        target()
-
-
-def sequential_test(repeat = 500,method=c.search):
-    for i in range(0, repeat):
-        """
-        c.lookup()
-        c.search()
-        c.buy()
-        """
         method()
-
-def thread_test(thread_num=5, repeat = 100, method=c.buy):
-    for i in range(0, thread_num):
-        #create_thread(c.lookup, repeat)
-        #create_thread(c.search, repeat)
-        create_thread(method, repeat)
-        
 
 if __name__ == "__main__":main()
 
