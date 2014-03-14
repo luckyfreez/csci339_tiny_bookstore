@@ -1,8 +1,4 @@
 #!/bin/bash
-killall java
-echo "done killing all existing java servers"
-make run_alllocal
-echo "server created"
 
 sleep 2
 python remote_test.py seq buy > /dev/null 2>&1

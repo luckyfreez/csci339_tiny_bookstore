@@ -1,2 +1,21 @@
 Testing for lookupusing sequential requests
 Testing with 10 repeats
+10 repetitions time: 0.0253300666809 seconds 
+Testing with 50 repeats
+50 repetitions time: 0.100210189819 seconds 
+Testing with 100 repeats
+100 repetitions time: 0.19873213768 seconds 
+Testing with 200 repeats
+200 repetitions time: 0.330373048782 seconds 
+Testing with 300 repeats
+300 repetitions time: 0.518805027008 seconds 
+Testing with 500 repeats
+500 repetitions time: 0.83837890625 seconds 
+Testing with 1000 repeats
+1000 repetitions time: 1.74531888962 seconds 
+Testing with 5000 repeats
+5000 repetitions time: 8.23952102661 seconds 
+Testing with 10000 repeats
+10000 repetitions time: 19.0401310921 seconds 
+
+

@@ -1,2 +1,21 @@
 Testing for searchusing sequential requests
 Testing with 10 repeats
+10 repetitions time: 0.0231070518494 seconds 
+Testing with 50 repeats
+50 repetitions time: 0.0918011665344 seconds 
+Testing with 100 repeats
+100 repetitions time: 0.14311003685 seconds 
+Testing with 200 repeats
+200 repetitions time: 0.346986055374 seconds 
+Testing with 300 repeats
+300 repetitions time: 0.468334913254 seconds 
+Testing with 500 repeats
+500 repetitions time: 0.809048891068 seconds 
+Testing with 1000 repeats
+1000 repetitions time: 1.60737800598 seconds 
+Testing with 5000 repeats
+5000 repetitions time: 7.78419995308 seconds 
+Testing with 10000 repeats
+10000 repetitions time: 39.2839031219 seconds 
+
+
