@@ -29,10 +29,10 @@ def main():
 
       if test_type == 'thread' and len(sys.argv) >=3:
         thread_num = int(sys.argv[3])
-        f = open("log/%s_multiple_test3_on_%s_with_%d_threads\n" % (test_type, method_name, thread_num), 'w')
+        f = open("log/%s_multiple_test4_on_%s_with_%d_threads\n" % (test_type, method_name, thread_num), 'w')
         repeat_thread_test(thread_num, method_name, method)
       elif test_type == 'seq':
-        f = open("log/%s_test3_on_%s" % (test_type, method_name), 'w')
+        f = open("log/%s_test4_on_%s" % (test_type, method_name), 'w')
         repeat_seq_test(method_name, method)
     f.write("\n\n")
 

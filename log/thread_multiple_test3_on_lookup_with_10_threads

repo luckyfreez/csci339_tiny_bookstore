@@ -1,0 +1,19 @@
+Testing for lookup using parallel requests
+Testing with 10 repeats
+10 repetitions time: 1.45929503441 seconds 
+Testing with 50 repeats
+50 repetitions time: 5.60388898849 seconds 
+Testing with 100 repeats
+100 repetitions time: 3.13545703888 seconds 
+Testing with 200 repeats
+200 repetitions time: 12.4563121796 seconds 
+Testing with 500 repeats
+500 repetitions time: 23.3602890968 seconds 
+Testing with 1000 repeats
+1000 repetitions time: 34.0839440823 seconds 
+Testing with 2000 repeats
+2000 repetitions time: 97.4360179901 seconds 
+Testing with 5000 repeats
+5000 repetitions time: 231.446033001 seconds 
+
+
