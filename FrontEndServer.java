@@ -14,6 +14,7 @@ public class FrontEndServer {
     private static String catalogServerAddr = "";
     private static String orderServerAddr = "";
 
+    // Starts the server
     public static void startFrontEndServer() {
 	try {
 	    PropertyHandlerMapping phm = new PropertyHandlerMapping();
@@ -26,9 +27,8 @@ public class FrontEndServer {
 	} catch (Exception exception) { System.err.println("FrontEndServer: " + exception); }
     }
 
+    // Input: a topic string. Calls the Catalog server to search for topic
     public String querySearch(String topic) {
-	System.out.println("Request received: Query search(" + topic +  ")");
-
 	XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
 	XmlRpcClient client = null;
 	try {
@@ -48,10 +48,8 @@ public class FrontEndServer {
 	return "Could not find";
     }
 
-
+    // Input: item number int. Calls the catalog server to search for the item number
     public Object[] queryLookup(int itemNum) {
-	System.out.println("Request received: Query lookup(" + itemNum +  ")");
-
 	XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
 	XmlRpcClient client = null;
 	try {
@@ -74,33 +72,31 @@ public class FrontEndServer {
 	return null;
     }
 
-  public boolean buy(int itemNum) {
-      System.out.println("Request received: buy(" + itemNum + ")");
+    // Input: item number int. Calls the order server to buy a book. If book is out of stock, returns false, else true.
+    public boolean buy(int itemNum) {
+	XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+	XmlRpcClient client = null;
+	try {
+	    config.setServerURL(new URL(orderServerAddr + ":8593"));
+	    client = new XmlRpcClient();
+	    client.setConfig(config);
+	} catch (Exception e) { System.err.println("Problem! "+ e); }
 
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    XmlRpcClient client = null;
-    try {
-      config.setServerURL(new URL(orderServerAddr + ":8593"));
-      client = new XmlRpcClient();
-      client.setConfig(config);
-    } catch (Exception e) { System.err.println("Problem! "+ e); }
+	Object[] params = new Object[1];
+	params[0] = itemNum;
 
-    Object[] params = new Object[1];
-    params[0] = itemNum;
+	try {
+	    Boolean result = (Boolean) client.execute("orderServer.buy", params);
+	    return result;
+	} catch (Exception exception) { System.err.println("Frontend Client: " + exception); }
+	return false;
+    }
 
-    try {
-      Boolean result = (Boolean) client.execute("orderServer.buy", params);
-      return result;
-    } catch (Exception exception) { System.err.println("Frontend Client: " + exception); }
-    return false;
-  }
-  public static void main(String[] args) {
-    catalogServerAddr = "http://" + ((args.length > 0) ? args[0] : "localhost");
-    orderServerAddr = "http://" + ((args.length > 1) ? args[1] : "localhost");
-
-    System.out.println("orderServerAddr = " +  orderServerAddr);
-    System.out.println("catalogServerAddr = " +  catalogServerAddr);
+    // Inputs: CatalogServer hostname, OrderServer hostname. Defaults to local host.
+    public static void main(String[] args) {
+	catalogServerAddr = "http://" + ((args.length > 0) ? args[0] : "localhost");
+	orderServerAddr = "http://" + ((args.length > 1) ? args[1] : "localhost");
     
-    FrontEndServer.startFrontEndServer();
-  }
+	FrontEndServer.startFrontEndServer();
+    }
 }

@@ -1,0 +1,21 @@
+Testing for buyusing sequential requests
+Testing with 10 repeats
+10 repetitions time: 0.0571160316467 seconds 
+Testing with 50 repeats
+50 repetitions time: 0.242556095123 seconds 
+Testing with 100 repeats
+100 repetitions time: 0.49141907692 seconds 
+Testing with 200 repeats
+200 repetitions time: 0.923340082169 seconds 
+Testing with 300 repeats
+300 repetitions time: 1.4150519371 seconds 
+Testing with 500 repeats
+500 repetitions time: 2.38580584526 seconds 
+Testing with 1000 repeats
+1000 repetitions time: 4.72904896736 seconds 
+Testing with 5000 repeats
+5000 repetitions time: 23.4837338924 seconds 
+Testing with 10000 repeats
+10000 repetitions time: 46.6337270737 seconds 
+
+
