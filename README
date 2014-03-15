@@ -1,0 +1,44 @@
+
+              Tiny Bookstore
+
+By Nico Ekasumara (14npe1) and Lucky Zhang (14zz2)
+
+====SERVER====
+
+- Compile the servers
+$ make all
+
+- Running the servers
+  (if the HOST args are not provided, they are default to localhost. The args can be either computer name or its ip address)
+  - catalog server
+	$ java -cp .:/usr/cs-local/339/xmlrpc-3.1.3/lib/* CatalogServer
+
+  - order server
+	$ java -cp .:/usr/cs-local/339/xmlrpc-3.1.3/lib/* OrderServer CATALOG_SERVER_HOST
+
+  - front server
+	$ java -cp .:/usr/cs-local/339/xmlrpc-3.1.3/lib/* FrontEndServer CATALOG_SERVER_HOST ORDER_SERVER_HOST
+	e.g. java -cp .:/usr/cs-local/339/xmlrpc-3.1.3/lib/* FrontEndServer beja 137.165.8.158
+
+- Please refer to the Makefile for how to run the servers.
+
+====CLIENT====
+
+$ python remote_client.py TEST_TYPE METHOD THREAD_NUM
+
+- TEST_TYPE: 'seq' for sequential test; 'thread' for concurrent test
+
+- METHOD: 'buy', 'lookup', 'add', 'update_stock_num' or 'add_new_book'
+    Refer to client.py for usage and example
+
+- THREAD_NUM: number of thread to create for the concurrent test. Will only be used if concurrent test is specified.
+
+e.g. $ python remote_test.py seq buy > /dev/null 2>&1
+
+e.g. send only one request (buy) to the front server running on zubron (in python console)
+
+  >>> import client
+  >>> c = client.Client('rath')
+  >>> c.buy()
+
+- Please refer to test.sh and remote_client.py for more examples on how to run the clients.
