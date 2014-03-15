@@ -9,21 +9,18 @@ import client
 import sys
 import time
 
-c = client.Client("brahorn")
+c = client.Client()
 lookup_results = {}
 search_results = {}
 buy_results = {}
 threads = []
 threads_num = []
-
 method_dict = {"search": c.search, "lookup": c.lookup, "buy": c.buy}
 
+
+#Inputs two arguments. The first is what type, seq or thread.
+# The second is the number of threads we want to run for.
 def main():
-    """
-    repeat_seq_test("Search", c.search)
-    repeat_seq_test("Lookup", c.lookup)
-    repeat_seq_test("Buy", c.buy)
-    """
     global f
     if len(sys.argv) >= 2:
       test_type = sys.argv[1]
@@ -39,9 +36,8 @@ def main():
         repeat_seq_test(method_name, method)
     f.write("\n\n")
 
-
-
-
+# Repeats the requests sequentually ranging from 10 to 10000. 
+# Inputs the name of the method we want, and the method
 def repeat_seq_test(method_name = "search", method = c.search):
     f.write("Testing for " + method_name + "using sequential requests\n")
     times = [10,50,100,200,300,500,1000,5000,10000]
@@ -54,6 +50,8 @@ def repeat_seq_test(method_name = "search", method = c.search):
         f.write(str(time.time() - start_time))
         f.write(" seconds \n")
 
+# Repeats the requests on n number of threads.
+# Input 1 is the number of threads. Inputs 2 and 3 are the method name and method.
 def repeat_thread_test(thread_num=10, method_name="search", method=c.search):
     f.write("Testing for " + method_name + " using parallel requests\n")
     times = [10,50,100,200,500,1000,2000,5000]
@@ -67,7 +65,6 @@ def repeat_thread_test(thread_num=10, method_name="search", method=c.search):
 
         # wait till all the threads finish
         while threads:
-          #print ("\r%d threads still running with total repeat %d" % (len(threads), repeat)),
           for t in threads:
             if not t.is_alive():
               threads.remove(t)
@@ -78,34 +75,17 @@ def repeat_thread_test(thread_num=10, method_name="search", method=c.search):
         f.write(" seconds \n")
         print ("finishing %d repeats")
 
+# Creates the thread that runs the method request.
 def create_thread(method, repeat):
     t = threading.Thread(target=repeat_target, kwargs={'method': method, 'repeat': repeat})
     t.daemon = True
     threads.append(t)
     t.start()
 
+# Repeats the method for repeat number of times. 
 def repeat_target(method=c.search, repeat=500):
     for i in range(0, repeat):
         method()
 
 if __name__ == "__main__":main()
 
-
-#"beja"
-#"tropicana"
-#"chillingham"
-#def create_remote(server_name, cmd):
-#  hostname = server_name
-#  username = "14zz2"
-#  password = getpass.getpass('password: ')
-#  child = pexpect.spawn("ssh " + username + "@" + hostname, timeout=4000)
-#  child.expect (pexpect.EOF)
-#  child.sendline(password)        
-#  child.expect (pexpect.EOF)
-#  child.sendline("~/339/1_web_server/./server -document_root ~/339/1_web_server/ -port 8897")
-#  child.expect (pexpect.EOF)
-#  print child.before
-#  
-#  #s.sendline()
-#create_remote("beja", "pwd")
-#raw_input()

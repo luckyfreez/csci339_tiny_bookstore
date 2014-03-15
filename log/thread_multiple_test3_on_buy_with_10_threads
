@@ -1,0 +1,19 @@
+Testing for buy using parallel requests
+Testing with 10 repeats
+10 repetitions time: 0.523600101471 seconds 
+Testing with 50 repeats
+50 repetitions time: 2.64213395119 seconds 
+Testing with 100 repeats
+100 repetitions time: 8.03199911118 seconds 
+Testing with 200 repeats
+200 repetitions time: 14.8777658939 seconds 
+Testing with 500 repeats
+500 repetitions time: 32.8494970798 seconds 
+Testing with 1000 repeats
+1000 repetitions time: 44.124984026 seconds 
+Testing with 2000 repeats
+2000 repetitions time: 110.199712038 seconds 
+Testing with 5000 repeats
+5000 repetitions time: 294.272339106 seconds 
+
+
